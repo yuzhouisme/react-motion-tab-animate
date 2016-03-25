@@ -39,6 +39,20 @@ Because the game named Clash Royale Recently I play, I think it's funny, thanks 
 
 ## Explanation (I think it's important to know how to make the animation)
 
+First, look the animation again and again, carefully. And try to find those points can be partitioned animation.
+
+Two tab and one slide mask block, a pair of title, icon, indicator. And find that three steps in animation.
+
+1. Mouse down(Touch start), the size of icon who has selected in smaller. And Mouse up(Touch end) revert to the original size.
+2. If selected tab changed, moving mask block, and the animation duration in easing.
+3. If selected tab changed, the width of block who has selected in bigger, and others width in smaller. The same to icon. The last, show or hide title and indicator.
+
+But something interesting here, hmmm, style z-index in react is not supported by now :P (As in react-native, CSS style transform-origin is not supported to change...OH NO)
+
+So we need to make sure title, icon on the top layer, at least topper than mask block.
+
+Okay, done it!
+
 ```
 render: function() {
     var windowWidth = window.innerWidth;
